@@ -99,7 +99,7 @@ func test(cmd *cobra.Command, args []string) {
 			}
 
 			mr, err := dev.Probe(client)
-			log.Printf("%+v", mr)
+			log.Printf("%s %+v", dev.Descriptor().Manufacturer, mr)
 			if err == nil && v.check(mr.Value) {
 				log.Printf("device %d: %s type device found, %s: %.2f\r\n",
 					deviceID,
