@@ -28,6 +28,20 @@ Scan will ignore the config file and requires adapter configuration using comman
 	Run: test,
 }
 
+// validator checks if value is in range of reference values
+type validator struct {
+	refs []float64
+}
+
+func (v validator) check(f float64) bool {
+	for _, ref := range v.refs {
+		if f >= 0.9*ref && f <= 1.1*ref {
+			return true
+		}
+	}
+	return false
+}
+
 func init() {
 	rootCmd.AddCommand(testCmd)
 }
@@ -65,6 +79,8 @@ func test(cmd *cobra.Command, args []string) {
 	deviceList := make(map[int]meters.Device)
 	log.Printf("starting bus scan on %s", adapter)
 
+	v := validator{[]float64{110, 230}}
+
 	// SCAN:
 	// loop over all valid slave adresses
 	for deviceID := 1; deviceID <= 2; deviceID++ {
@@ -84,7 +100,7 @@ func test(cmd *cobra.Command, args []string) {
 
 			mr, err := dev.Probe(client)
 			log.Printf("%+v", mr)
-			if err == nil {
+			if err == nil && v.check(mr.Value) {
 				log.Printf("device %d: %s type device found, %s: %.2f\r\n",
 					deviceID,
 					dev.Descriptor().Manufacturer,
