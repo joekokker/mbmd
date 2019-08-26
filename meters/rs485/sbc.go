@@ -59,7 +59,7 @@ func (p *SBCProducer) Description() string {
 
 func (p *SBCProducer) snip(iec Measurement, readlen uint16) Operation {
 	return Operation{
-		FuncCode: ReadHoldingReg,
+		FuncCode: readHoldingReg,
 		OpCode:   p.Opcode(iec) - 1, // adjust according to docs
 		ReadLen:  readlen,
 		IEC61850: iec,
