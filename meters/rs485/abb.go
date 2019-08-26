@@ -3,6 +3,7 @@ package rs485
 import (
 	"math"
 
+	"github.com/grid-x/modbus"
 	. "github.com/volkszaehler/mbmd/meters"
 )
 
@@ -66,6 +67,10 @@ func (p *ABBProducer) Type() string {
 
 func (p *ABBProducer) Description() string {
 	return "ABB A/B-Series meters"
+}
+
+func (p *ABBProducer) Initialize(client modbus.Client, descriptor *DeviceDescriptor) error {
+	return initializeMID(client, descriptor)
 }
 
 // wrapTransform validates if reading result is undefined and returns NaN in that case
