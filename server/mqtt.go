@@ -67,7 +67,7 @@ func (m *MqttClient) Publish(topic string, retained bool, message interface{}) {
 	if m.verbose {
 		log.Printf("mqtt: publish %s, message: %s", topic, message)
 	}
-	go m.WaitForToken(token)
+	m.WaitForToken(token)
 }
 
 // WaitForToken synchronously waits until token operation completed
@@ -81,7 +81,7 @@ func (m *MqttClient) WaitForToken(token MQTT.Token) {
 	}
 }
 
-// deviceTopic converts meter's device id to topic string
+// mqttDeviceTopic converts meter's device id to topic string
 func mqttDeviceTopic(deviceID string) string {
 	topic := strings.Replace(strings.ToLower(deviceID), "#", "", -1)
 	return strings.Replace(topic, ".", "-", -1)
@@ -95,9 +95,8 @@ type MqttRunner struct {
 
 // NewMqttRunner create a new runer for plain MQTT
 func NewMqttRunner(options *MQTT.ClientOptions, qos byte, topic string, verbose bool) *MqttRunner {
-	// set will
 	lwt := fmt.Sprintf("%s/status", topic)
-	options.SetWill(lwt, "disconnected", qos, true)
+	options.SetWill(lwt, "lost", qos, true)
 
 	client := NewMqttClient(options, qos, verbose)
 
@@ -109,12 +108,15 @@ func NewMqttRunner(options *MQTT.ClientOptions, qos byte, topic string, verbose 
 
 // Run MqttClient publisher
 func (m *MqttRunner) Run(in <-chan QuerySnip) {
-	// notify connection and override will
-	m.MqttClient.Publish(fmt.Sprintf("%s/status", m.topic), true, "connected")
+	lwt := fmt.Sprintf("%s/status", m.topic)
+	m.MqttClient.Publish(lwt, true, "connected")
 
 	for snip := range in {
 		topic := fmt.Sprintf("%s/%s/%s", m.topic, mqttDeviceTopic(snip.Device), snip.Measurement)
 		message := fmt.Sprintf("%.3f", snip.Value)
 		go m.Publish(topic, false, message)
 	}
+
+	m.MqttClient.Publish(lwt, true, "disconnected")
+	m.MqttClient.Client.Disconnect(uint(publishTimeout.Milliseconds()))
 }
