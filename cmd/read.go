@@ -3,7 +3,7 @@ package cmd
 import (
 	"encoding/binary"
 	"fmt"
-	"log"
+	golog "log"
 	"math"
 	"os"
 	"strconv"
@@ -59,7 +59,7 @@ func modbusClient() (meters.Connection, modbus.Client) {
 
 	// raw log
 	if viper.GetBool("raw") {
-		conn.Logger(log.New(os.Stderr, "", log.LstdFlags))
+		conn.Logger(golog.New(os.Stderr, "", golog.LstdFlags))
 	}
 
 	return conn, client
@@ -190,6 +190,9 @@ func validateFlags(typ, encoding string) {
 }
 
 func read(cmd *cobra.Command, args []string) {
+	// log only fatal messages
+	configureLogger(viper.GetBool("verbose"), 0)
+
 	// arguments
 	register, length := parseArgs(args)
 
@@ -202,6 +205,11 @@ func read(cmd *cobra.Command, args []string) {
 	// parse modbus settings
 	conn, client := modbusClient()
 	conn.Slave(deviceIDFromSpec(dev))
+
+	// raw log
+	if viper.GetBool("raw") {
+		conn.Logger(golog.New(os.Stderr, "", 0))
+	}
 
 	// execute read
 	f := readFunction(client, typ)

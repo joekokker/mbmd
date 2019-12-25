@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"log"
+	golog "log"
 	"os"
 	"strings"
 	"text/tabwriter"
@@ -155,7 +155,7 @@ func inspect(cmd *cobra.Command, args []string) {
 
 	// raw log
 	if viper.GetBool("raw") {
-		setLogger(confHandler.Managers, log.New(os.Stderr, "", 0))
+		setLogger(confHandler.Managers, golog.New(os.Stderr, "", 0))
 	}
 
 	for _, m := range confHandler.Managers {

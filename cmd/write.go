@@ -2,12 +2,12 @@ package cmd
 
 import (
 	"encoding/binary"
-	"log"
 	"math"
 	"strconv"
 	"strings"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // writeCmd represents the write command
@@ -143,6 +143,9 @@ func encode(value string, length int, encoding string) []byte {
 }
 
 func write(cmd *cobra.Command, args []string) {
+	// log only fatal messages
+	configureLogger(viper.GetBool("verbose"), 0)
+
 	// arguments
 	register, length := parseArgs(args)
 	value := args[2]

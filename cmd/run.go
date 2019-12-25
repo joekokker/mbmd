@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"context"
-	"log"
+	golog "log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -232,7 +232,7 @@ func run(cmd *cobra.Command, args []string) {
 
 	// raw log
 	if viper.GetBool("raw") {
-		setLogger(confHandler.Managers, log.New(os.Stderr, "", log.LstdFlags))
+		setLogger(confHandler.Managers, golog.New(os.Stderr, "", golog.LstdFlags))
 	}
 
 	// query engine
