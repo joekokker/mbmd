@@ -227,7 +227,7 @@ func run(cmd *cobra.Command, args []string) {
 	}
 
 	if countDevices(confHandler.Managers) == 0 {
-		log.Fatal("config: no devices found - terminiating")
+		log.Fatal("config: no devices found - terminating")
 	}
 
 	// raw log

@@ -144,7 +144,7 @@ func inspect(cmd *cobra.Command, args []string) {
 	// create devices from command line
 	devices, _ := cmd.PersistentFlags().GetStringSlice("devices")
 	if len(devices) == 0 {
-		fmt.Fprint(os.Stderr, "config: no devices found - terminiating")
+		fmt.Fprint(os.Stderr, "config: no devices found - terminating")
 		os.Exit(1)
 	}
 	for _, dev := range devices {
