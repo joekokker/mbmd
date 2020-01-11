@@ -1,3 +1,42 @@
+Vue.component('measurement', {
+	template: '#measurement',
+	props: {
+		data: Object,
+		name: String,
+		val: String,
+		sum: Boolean,
+	},
+	data: function () {
+		self=this;
+		let p = function(i) {
+			return self.data[i] !== undefined && self.data[i] !== null && self.data[i] !== "";
+		}
+		let v = function(i) {
+			return self.data[i];
+		}
+		console.log(this.val)
+		console.log(this.data)
+		return {
+			// display: p(this.val) || p(this.val+"L1")||p(this.val+"L2")||p(this.val+"L3") || p(this.val+"S1")||p(this.val+"S2")||p(this.val+"S3"),
+			display: true,
+			// l1: p(this.val+"L1") || p(this.val+"S1"),
+			// l2: p(this.val+"L2") || p(this.val+"S1"),
+			// l3: p(this.val+"L3") || p(this.val+"S1"),
+			l1: true,
+			l2: true,
+			l3: true,
+			val1: v(this.val + "L1") || v(this.val + "S1"),
+			val2: v(this.val + "L2") || v(this.val + "S2"),
+			val3: v(this.val + "L3") || v(this.val + "S3"),
+			valsum:
+				v(this.val) ||
+				v(this.val + "L1") + v(this.val + "L2") + v(this.val + "L3") ||
+				v(this.val + "S1") + v(this.val + "S2") + v(this.val + "S3")
+		};
+	},
+});
+
+
 var dataapp = new Vue({
 	el: '#realtime',
 	delimiters: ['${', '}'],
@@ -128,7 +167,8 @@ function connectSocket() {
 	var ws, loc = window.location;
 	var protocol = loc.protocol == "https:" ? "wss:" : "ws:"
 
-	ws = new WebSocket(protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + "/ws");
+	// ws = new WebSocket(protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + "/ws");
+	ws = new WebSocket("ws://localhost:8081/ws");
 
 	ws.onerror = function(evt) {
 		// console.warn("Connection error");
@@ -136,7 +176,7 @@ function connectSocket() {
 	}
 	ws.onclose = function (evt) {
 		// console.warn("Connection closed");
-		window.setTimeout(connectSocket, 100);
+		window.setTimeout(connectSocket, 1000);
 	};
 	ws.onmessage = function (evt) {
 		var json = JSON.parse(evt.data);
