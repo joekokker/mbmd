@@ -32,9 +32,9 @@ Vue.component('row', {
 			if (l123) {
 				valsum = v(this.val);
 			} else if (p(this.val+"L1") || p(this.val+"L2") || p(this.val+"L3")) {
-				valsum = v(this.val+"L1") + v(this.val+"L2") + v(this.val+"L3")
+				valsum = v(this.val+"L1") + v(this.val+"L2") + v(this.val+"L3");
 			} else {
-				valsum = v(this.val+"S1") + v(this.val+"S2") + v(this.val+"S3")
+				valsum = v(this.val+"S1") + v(this.val+"S2") + v(this.val+"S3");
 			}
 		}
 
@@ -43,10 +43,10 @@ Vue.component('row', {
 			l1: l1,
 			l2: l2,
 			l3: l3,
-			val1: p(this.val+"L1") ? v(this.val+"L1") : v(this.val+"S1"),
-			val2: p(this.val+"L2") ? v(this.val+"L2") : v(this.val+"S2"),
-			val3: p(this.val+"L3") ? v(this.val+"L3") : v(this.val+"S3"),
-			valsum: valsum,
+			val1: (p(this.val+"L1") ? v(this.val+"L1") : v(this.val+"S1")).toFixed(2),
+			val2: (p(this.val+"L2") ? v(this.val+"L2") : v(this.val+"S2")).toFixed(2),
+			val3: (p(this.val+"L3") ? v(this.val+"L3") : v(this.val+"S3")).toFixed(2),
+			valsum: valsum.toFixed(2),
 		};
 	},
 });
