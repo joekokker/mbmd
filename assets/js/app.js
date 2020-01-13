@@ -1,41 +1,55 @@
-Vue.component('measurement', {
+Vue.component('row', {
 	template: '#measurement',
+	delimiters: ["${", "}"],
 	props: {
 		data: Object,
-		name: String,
+		title: String,
 		val: String,
 		sum: Boolean,
 	},
 	data: function () {
-		self=this;
-		let p = function(i) {
+		self = this;
+
+		// p determines if the argumnt is non-null
+		let p = function (i) {
 			return self.data[i] !== undefined && self.data[i] !== null && self.data[i] !== "";
 		}
-		let v = function(i) {
-			return self.data[i];
+
+		// val returns addable value: null, NaN and empty are converted to 0
+		let v = function (i) {
+			let v = parseFloat(self.data[i]);
+			return isNaN(v) ? 0 : v;
 		}
-		console.log(this.val)
-		console.log(this.data)
+
+		// total sum, phase or string definition
+		let l123 = p(this.val);
+		let l1 = p(this.val+"L1") || p(this.val+"S1");
+		let l2 = p(this.val+"L2") || p(this.val+"S2");
+		let l3 = p(this.val+"L3") || p(this.val+"S3");
+
+		let valsum;
+		if (this.sum) {
+			if (l123) {
+				valsum = v(this.val);
+			} else if (p(this.val+"L1") || p(this.val+"L2") || p(this.val+"L3")) {
+				valsum = v(this.val+"L1") + v(this.val+"L2") + v(this.val+"L3")
+			} else {
+				valsum = v(this.val+"S1") + v(this.val+"S2") + v(this.val+"S3")
+			}
+		}
+
 		return {
-			// display: p(this.val) || p(this.val+"L1")||p(this.val+"L2")||p(this.val+"L3") || p(this.val+"S1")||p(this.val+"S2")||p(this.val+"S3"),
-			display: true,
-			// l1: p(this.val+"L1") || p(this.val+"S1"),
-			// l2: p(this.val+"L2") || p(this.val+"S1"),
-			// l3: p(this.val+"L3") || p(this.val+"S1"),
-			l1: true,
-			l2: true,
-			l3: true,
-			val1: v(this.val + "L1") || v(this.val + "S1"),
-			val2: v(this.val + "L2") || v(this.val + "S2"),
-			val3: v(this.val + "L3") || v(this.val + "S3"),
-			valsum:
-				v(this.val) ||
-				v(this.val + "L1") + v(this.val + "L2") + v(this.val + "L3") ||
-				v(this.val + "S1") + v(this.val + "S2") + v(this.val + "S3")
+			display: l123 || l1 || l2 || l3,
+			l1: l1,
+			l2: l2,
+			l3: l3,
+			val1: p(this.val+"L1") ? v(this.val+"L1") : v(this.val+"S1"),
+			val2: p(this.val+"L2") ? v(this.val+"L2") : v(this.val+"S2"),
+			val3: p(this.val+"L3") ? v(this.val+"L3") : v(this.val+"S3"),
+			valsum: valsum,
 		};
 	},
 });
-
 
 var dataapp = new Vue({
 	el: '#realtime',
