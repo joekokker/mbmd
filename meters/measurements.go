@@ -124,6 +124,8 @@ const (
 	// Battery
 	ChargeState
 	BatteryVoltage
+	
+	PhaseAngle
 )
 
 var iec = map[Measurement][]string{
@@ -206,6 +208,7 @@ var iec = map[Measurement][]string{
 	HeatSinkTemp:     {"Heat Sink Temperature", "°C"},
 	ChargeState:      {"Charge State", "%"},
 	BatteryVoltage:   {"Battery Voltage", "V"},
+	PhaseAngle:       {"Phase Angle", "°"},
 }
 
 // MarshalText implements encoding.TextMarshaler

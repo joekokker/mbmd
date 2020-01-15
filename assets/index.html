@@ -340,6 +340,13 @@
 							<td class="col-2">&mdash;</td>
 							<td class="col-3">${ m.Frequency }</td>
 						</tr>
+						<tr class="d-flex" v-if="populated(m.PhaseAngle)">
+							<td class="col-3">Phase Angle</td>
+							<td class="col-2">&mdash;</td>
+							<td class="col-2">&mdash;</td>
+							<td class="col-2">&mdash;</td>
+							<td class="col-3">${ m.PhaseAngle }</td>
+						</tr>
 						<tr class="d-flex" v-if="populated(m.HeatsinkTemp)">
 							<td class="col-3">Heatsink Temperature (°C)</td>
 							<td class="col-2">&mdash;</td>
