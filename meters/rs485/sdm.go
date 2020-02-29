@@ -16,13 +16,13 @@ type SDMProducer struct {
 
 func NewSDMProducer() Producer {
 	/**
-	 * Opcodes as defined by Eastron.
+	 * Opcodes as defined by Eastron SDM630.
 	 * See http://bg-etech.de/download/manual/SDM630Register.pdf
-	 * Please note that this is the superset of all SDM devices -
-	 * some opcodes might not work on some devicep.
+	 * This is to a large extent a superset of all SDM devices, however there are
+	 * subtle differences (see 220, 230). Some opcodes might not work on some devices.
 	 */
 	ops := Opcodes{
-		VoltageL1:     0x0000,
+		VoltageL1:     0x0000, // 220, 230
 		VoltageL2:     0x0002,
 		VoltageL3:     0x0004,
 		VoltageL1toL2: 0x00c8,  // Phase  to  Phase  Voltage
@@ -50,16 +50,16 @@ func NewSDMProducer() Producer {
 		ImportL1:      0x015a,
 		ImportL2:      0x015c,
 		ImportL3:      0x015e,
-		Import:        0x0048,
+		Import:        0x0048, // 220, 230
 		ExportL1:      0x0160,
 		ExportL2:      0x0162,
 		ExportL3:      0x0164,
-		Export:        0x004a,
+		Export:        0x004a, // 220, 230
 		SumL1:         0x0166,
 		SumL2:         0x0168,
 		SumL3:         0x016a,
-		Sum:           0x0156,
-		CosphiL1:      0x001e,
+		Sum:           0x0156, // 220
+		CosphiL1:      0x001e, //      230
 		CosphiL2:      0x0020,
 		CosphiL3:      0x0022,
 		Cosphi:        0x003e,
@@ -86,7 +86,7 @@ func (p *SDMProducer) Type() string {
 }
 
 func (p *SDMProducer) Description() string {
-	return "Eastron SDM meters"
+	return "Eastron SDM630"
 }
 
 func (p *SDMProducer) snip(iec Measurement) Operation {
