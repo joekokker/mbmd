@@ -30,6 +30,7 @@ const (
 	CurrentL1
 	CurrentL2
 	CurrentL3
+        CurrentN
 
 	// phases and sums
 	Voltage
@@ -125,6 +126,9 @@ const (
 	ReactiveExportL2
 	ReactiveExportL3
 
+	ApparentImport
+	ApparentExport
+
 	// DC
 	DCCurrent
 	DCVoltage
@@ -195,10 +199,10 @@ var iec = map[Measurement][]string{
 	THDL1:            {"L1 Voltage to neutral THD", "%"},
 	THDL2:            {"L2 Voltage to neutral THD", "%"},
 	THDL3:            {"L3 Voltage to neutral THD", "%"},
-	THDCurrent:       {"Average line current THD", "%"}
-	THDL1Current:     {"L1 current THD", "%"}
-	THDL2Current:     {"L2 current THD", "%"}
-	THDL3Current:     {"L3 current THD", "%"}
+	THDCurrent:       {"Average line current THD", "%"},
+	THDL1Current:     {"L1 current THD", "%"},
+	THDL2Current:     {"L2 current THD", "%"},
+	THDL3Current:     {"L3 current THD", "%"},
 	Sum:              {"Total Sum", "kWh"},
 	SumT1:            {"Tariff 1 Sum", "kWh"},
 	SumT2:            {"Tariff 2 Sum", "kWh"},
@@ -235,6 +239,8 @@ var iec = map[Measurement][]string{
 	ReactiveExportL1: {"L1 Reactive Export", "kvarh"},
 	ReactiveExportL2: {"L2 Reactive Export", "kvarh"},
 	ReactiveExportL3: {"L3 Reactive Export", "kvarh"},
+	ApparentImport:   {"Apparent Import", "kVA"},
+	ApparentExport:   {"Apparent Export", "kVA"},
 	DCCurrent:        {"DC Current", "A"},
 	DCVoltage:        {"DC Voltage", "V"},
 	DCPower:          {"DC Power", "W"},

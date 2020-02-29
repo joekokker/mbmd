@@ -32,7 +32,7 @@ func NewElectrexProducer() Producer {
 		CurrentL1:         0x00e2,  // Line current
 		CurrentL2:         0x00e4,  // Line current
 		CurrentL3:         0x00e6,  // Line current
-		CurrentN:          0x00e8  // Neutral Current
+		CurrentN:          0x00e8,  // Neutral Current
 		Current:           0x010a,  //  Three phase current
 		PowerL1:           0x00ea,  // Phase Active Power (+/-)
 		PowerL2:           0x00ec,  // Phase Active Power (+/-)
@@ -42,9 +42,9 @@ func NewElectrexProducer() Producer {
 		ApparentPowerL2:   0x00f8,  // Phase Apparent Power
 		ApparentPowerL3:   0x00fa,  // Phase Apparent Power
 		ApparentPower:     0x0110,  // Total apparent power
-		ReactivePowerL1    0x00f0,  // Phase Reactive Power (+/-)
-		ReactivePowerL2    0x00f2,  // Phase Reactive Power (+/-)
-		ReactivePowerL3    0x00f4,  // Phase Reactive Power (+/-)
+		ReactivePowerL1:   0x00f0,  // Phase Reactive Power (+/-)
+		ReactivePowerL2:   0x00f2,  // Phase Reactive Power (+/-)
+		ReactivePowerL3:   0x00f4,  // Phase Reactive Power (+/-)
 		ReactivePower:     0x010e,  // Total reactive power (+/-)
 		Import:            0x0114,  // Total import Active Power, AVG
 		Export:            0x011c,  // Total export Active Power, AVG
