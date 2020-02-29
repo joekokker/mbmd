@@ -37,6 +37,11 @@ const (
 	VoltageL2
 	VoltageL3
 
+	VoltageL1toL2
+	VoltageL2toL3
+	VoltageL3toL1
+	VoltageLtoL
+
 	Power // synonymous ActivePower
 	PowerL1
 	PowerL2
@@ -71,6 +76,16 @@ const (
 	THDL1
 	THDL2
 	THDL3
+
+	THDCurrent
+	THDL1Current
+	THDL2Current
+	THDL3Current
+	
+	PowerFactor
+	PowerFactorL1
+	PowerFactorL2
+	PowerFactorL3
 
 	// energy
 	Sum // synonymous ActiveEnergy
@@ -121,6 +136,20 @@ const (
 	DCPower
 	HeatSinkTemp
 
+	// Strings
+	DCCurrentS1
+	DCVoltageS1
+	DCPowerS1
+	DCEnergyS1
+	DCCurrentS2
+	DCVoltageS2
+	DCPowerS2
+	DCEnergyS2
+	DCCurrentS3
+	DCVoltageS3
+	DCPowerS3
+	DCEnergyS3
+
 	// Battery
 	ChargeState
 	BatteryVoltage
@@ -134,10 +163,15 @@ var iec = map[Measurement][]string{
 	CurrentL1:        {"L1 Current", "A"},
 	CurrentL2:        {"L2 Current", "A"},
 	CurrentL3:        {"L3 Current", "A"},
+	CurrentN:         {"Neutral Current", "A"},
 	Voltage:          {"Voltage", "V"},
 	VoltageL1:        {"L1 Voltage", "V"},
 	VoltageL2:        {"L2 Voltage", "V"},
 	VoltageL3:        {"L3 Voltage", "V"},
+	VoltageL1toL2:    {"L1 to L2 Voltage", "V"},
+	VoltageL2toL3:    {"L2 to L3 Voltage", "V"},
+	VoltageL3toL1:    {"L3 to L1 Voltage", "V"},
+	VoltageLtoL:      {"Mean phase to phase Voltage", "V"},
 	Power:            {"Power", "W"},
 	PowerL1:          {"L1 Power", "W"},
 	PowerL2:          {"L2 Power", "W"},
@@ -166,6 +200,14 @@ var iec = map[Measurement][]string{
 	THDL1:            {"L1 Voltage to neutral THD", "%"},
 	THDL2:            {"L2 Voltage to neutral THD", "%"},
 	THDL3:            {"L3 Voltage to neutral THD", "%"},
+	THDCurrent:       {"Average line current THD", "%"}
+	THDL1Current:     {"L1 current THD", "%"}
+	THDL2Current:     {"L2 current THD", "%"}
+	THDL3Current:     {"L3 current THD", "%"}
+	PowerFactor:      {"Total Power Factor"}
+	PowerFactorL1:    {"L1 Power Factor"}
+	PowerFactorL2:    {"L2 Power Factor"}
+	PowerFactorL3:    {"L3 Power Factor"}
 	Sum:              {"Total Sum", "kWh"},
 	SumT1:            {"Tariff 1 Sum", "kWh"},
 	SumT2:            {"Tariff 2 Sum", "kWh"},
@@ -206,6 +248,18 @@ var iec = map[Measurement][]string{
 	DCVoltage:        {"DC Voltage", "V"},
 	DCPower:          {"DC Power", "W"},
 	HeatSinkTemp:     {"Heat Sink Temperature", "°C"},
+	DCCurrentS1:      {"String 1 Current", "A"},
+	DCVoltageS1:      {"String 1 Voltage", "V"},
+	DCPowerS1:        {"String 1 Power", "W"},
+	DCEnergyS1:       {"String 1 Generation", "kWh"},
+	DCCurrentS2:      {"String 2 Current", "A"},
+	DCVoltageS2:      {"String 2 Voltage", "V"},
+	DCPowerS2:        {"String 2 Power", "W"},
+	DCEnergyS2:       {"String 2 Generation", "kWh"},
+	DCCurrentS3:      {"String 3 Current", "A"},
+	DCVoltageS3:      {"String 3 Voltage", "V"},
+	DCPowerS3:        {"String 3 Power", "W"},
+	DCEnergyS3:       {"String 3 Generation", "kWh"},
 	ChargeState:      {"Charge State", "%"},
 	BatteryVoltage:   {"Battery Voltage", "V"},
 	PhaseAngle:       {"Phase Angle", "°"},
