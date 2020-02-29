@@ -63,10 +63,10 @@ func NewElectrexProducer() Producer {
 		THDL2Current:      0x00d0,  // Line current, THD 
 		THDL3Current:      0x00d2,  // Line current, THD
 		THDCurrent:        0x0104,  // Line current, Mean THD
-		PowerFactorL1:     0x00fc,  // Phase Power Factor (+/-)
-		PowerFactorL2:     0x00fe,  // Phase Power Factor (+/-) 
-		PowerFactorL3:     0x0100,  // Phase Power Factor (+/-) 
-		PowerFactor:       0x0112,  // Total Power Factor (+/-) 
+		CosphiL1:          0x00fc,  // Phase Power Factor (+/-)
+		CosphiL2:          0x00fe,  // Phase Power Factor (+/-) 
+		CosphiL3:          0x0100,  // Phase Power Factor (+/-) 
+		Cosphi:            0x0112,  // Total Power Factor (+/-) 
 		//ApparentImportPower: 0x0064,
 	}
 	return &ElectrexProducer{Opcodes: ops}
