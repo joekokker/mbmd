@@ -81,11 +81,6 @@ const (
 	THDL1Current
 	THDL2Current
 	THDL3Current
-	
-	PowerFactor
-	PowerFactorL1
-	PowerFactorL2
-	PowerFactorL3
 
 	// energy
 	Sum // synonymous ActiveEnergy
@@ -204,10 +199,6 @@ var iec = map[Measurement][]string{
 	THDL1Current:     {"L1 current THD", "%"}
 	THDL2Current:     {"L2 current THD", "%"}
 	THDL3Current:     {"L3 current THD", "%"}
-	PowerFactor:      {"Total Power Factor"}
-	PowerFactorL1:    {"L1 Power Factor"}
-	PowerFactorL2:    {"L2 Power Factor"}
-	PowerFactorL3:    {"L3 Power Factor"}
 	Sum:              {"Total Sum", "kWh"},
 	SumT1:            {"Tariff 1 Sum", "kWh"},
 	SumT2:            {"Tariff 2 Sum", "kWh"},
