@@ -387,17 +387,6 @@
 						<td class="col-3" v-if="pop(m.THDCurrent)">${ m.THDCurrent }</td>
 						<td class="col-3" v-else>&mdash;</td>
 					</tr>
-					<tr class="d-flex" v-if="pop(m.PowerFactorL1, m.PowerFactorL2, m.PowerFactorL3, m.PowerFactor)">
-						<td class="col-3">Power Factor</td>
-						<td class="col-2" v-if="pop(m.PowerFactorL1)">${ m.PowerFactorL1 }</td>
-						<td class="col-2" v-else>&mdash;</td>
-						<td class="col-2" v-if="pop(m.PowerFactorL2)">${ m.PowerFactorL2 }</td>
-						<td class="col-2" v-else>&mdash;</td>
-						<td class="col-2" v-if="pop(m.PowerFactorL3)">${ m.PowerFactorL3 }</td>
-						<td class="col-2" v-else>&mdash;</td>
-						<td class="col-3" v-if="pop(m.PowerFactor)">${ m.PowerFactor }</td>
-						<td class="col-3" v-else>&mdash;</td>
-					</tr>
 					<tr class="d-flex" v-if="pop(m.Frequency)">
 						<td class="col-3">Frequency (Hz)</td>
 						<td class="col-2">&mdash;</td>
