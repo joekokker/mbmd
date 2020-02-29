@@ -111,7 +111,7 @@
 						<td class="col-3" v-else>&mdash;</td>
 					</tr>
 					<tr class="d-flex" v-if="pop(m.VoltageL1toL2, m.VoltageL2toL3, m.VoltageL3toL1, m.VoltageLtoL)">
-						<td class="col-3">Voltage (V)</td>
+						<td class="col-3">Line to Line Voltage (V)</td>
 						<td class="col-2" v-if="pop(m.VoltageL1toL2)">${ m.VoltageL1toL2 }</td>
 						<td class="col-2" v-else>&mdash;</td>
 						<td class="col-2" v-if="pop(m.VoltageL2toL3)">${ m.VoltageL2toL3 }</td>
@@ -131,6 +131,13 @@
 						<td class="col-2" v-else>&mdash;</td>
 						<td class="col-3" v-if="pop(m.Current)">${ m.Current }</td>
 						<td class="col-3" v-else>${ (val(m.CurrentL1) + val(m.CurrentL2) + val(m.CurrentL3)).toFixed(2) }</td>
+					</tr>
+					<tr class="d-flex" v-if="pop(m.CurrentN)">
+						<td class="col-3">Neutral Current (A)</td>
+						<td class="col-2">&mdash;</td>
+						<td class="col-2">&mdash;</td>
+						<td class="col-2">&mdash;</td>
+						<td class="col-3">${ m.CurrentN }</td>
 					</tr>
 					<tr class="d-flex" v-if="pop(m.PowerL1, m.PowerL2, m.PowerL3, m.Power)">
 						<td class="col-3">Power (W)</td>
@@ -233,17 +240,7 @@
 						<td class="col-3">Tariff 1 Import (kWh)</td>
 						<td class="col-2">&mdash;</td>
 						<td class="col-2">&mdash;</td>
-						<td class="col-2">&mdash;</td>					<tr class="d-flex" v-if="pop(m.THDL1, m.THDL2, m.THDL3, m.THD)">
-						<td class="col-3">THD Voltage (%)</td>
-						<td class="col-2" v-if="pop(m.THDL1)">${ m.THDL1 }</td>
-						<td class="col-2" v-else>&mdash;</td>
-						<td class="col-2" v-if="pop(m.THDL2)">${ m.THDL2 }</td>
-						<td class="col-2" v-else>&mdash;</td>
-						<td class="col-2" v-if="pop(m.THDL3)">${ m.THDL3 }</td>
-						<td class="col-2" v-else>&mdash;</td>
-						<td class="col-3" v-if="pop(m.THD)">${ m.THD }</td>
-						<td class="col-3" v-else>&mdash;</td>
-					</tr>
+						<td class="col-2">&mdash;</td>
 						<td class="col-3">${ m.ImportT1 }</td>
 					</tr>
 					<tr class="d-flex" v-if="pop(m.ImportT2)">
@@ -380,7 +377,7 @@
 						<td class="col-3" v-else>&mdash;</td>
 					</tr>
 					<tr class="d-flex" v-if="pop(m.THDL1Current, m.THDL2Current, m.THDL3Current, m.THDCurrent)">
-						<td class="col-3">THD Voltage (%)</td>
+						<td class="col-3">THD Current (%)</td>
 						<td class="col-2" v-if="pop(m.THDL1Current)">${ m.THDL1Current }</td>
 						<td class="col-2" v-else>&mdash;</td>
 						<td class="col-2" v-if="pop(m.THDL2Current)">${ m.THDL2Current }</td>
@@ -391,7 +388,7 @@
 						<td class="col-3" v-else>&mdash;</td>
 					</tr>
 					<tr class="d-flex" v-if="pop(m.PowerFactorL1, m.PowerFactorL2, m.PowerFactorL3, m.PowerFactor)">
-						<td class="col-3">THD Voltage (%)</td>
+						<td class="col-3">Power Factor</td>
 						<td class="col-2" v-if="pop(m.PowerFactorL1)">${ m.PowerFactorL1 }</td>
 						<td class="col-2" v-else>&mdash;</td>
 						<td class="col-2" v-if="pop(m.PowerFactorL2)">${ m.PowerFactorL2 }</td>
