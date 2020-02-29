@@ -37,6 +37,11 @@ const (
 	VoltageL2
 	VoltageL3
 
+	VoltageL1toL2
+	VoltageL2toL3
+	VoltageL3toL1
+	VoltageLtoL
+
 	Power // synonymous ActivePower
 	PowerL1
 	PowerL2
@@ -71,6 +76,16 @@ const (
 	THDL1
 	THDL2
 	THDL3
+
+	THDCurrent
+	THDL1Current
+	THDL2Current
+	THDL3Current
+	
+	PowerFactor
+	PowerFactorL1
+	PowerFactorL2
+	PowerFactorL3
 
 	// energy
 	Sum // synonymous ActiveEnergy
@@ -146,10 +161,15 @@ var iec = map[Measurement][]string{
 	CurrentL1:        {"L1 Current", "A"},
 	CurrentL2:        {"L2 Current", "A"},
 	CurrentL3:        {"L3 Current", "A"},
+	CurrentN:         {"Neutral Current", "A"},
 	Voltage:          {"Voltage", "V"},
 	VoltageL1:        {"L1 Voltage", "V"},
 	VoltageL2:        {"L2 Voltage", "V"},
 	VoltageL3:        {"L3 Voltage", "V"},
+	VoltageL1toL2:    {"L1 to L2 Voltage", "V"},
+	VoltageL2toL3:    {"L2 to L3 Voltage", "V"},
+	VoltageL3toL1:    {"L3 to L1 Voltage", "V"},
+	VoltageLtoL:      {"Mean phase to phase Voltage", "V"},
 	Power:            {"Power", "W"},
 	PowerL1:          {"L1 Power", "W"},
 	PowerL2:          {"L2 Power", "W"},
@@ -178,6 +198,14 @@ var iec = map[Measurement][]string{
 	THDL1:            {"L1 Voltage to neutral THD", "%"},
 	THDL2:            {"L2 Voltage to neutral THD", "%"},
 	THDL3:            {"L3 Voltage to neutral THD", "%"},
+	THDCurrent:       {"Average line current THD", "%"}
+	THDL1Current:     {"L1 current THD", "%"}
+	THDL2Current:     {"L2 current THD", "%"}
+	THDL3Current:     {"L3 current THD", "%"}
+	PowerFactor:      {"Total Power Factor"}
+	PowerFactorL1:    {"L1 Power Factor"}
+	PowerFactorL2:    {"L2 Power Factor"}
+	PowerFactorL3:    {"L3 Power Factor"}
 	Sum:              {"Total Sum", "kWh"},
 	SumT1:            {"Tariff 1 Sum", "kWh"},
 	SumT2:            {"Tariff 2 Sum", "kWh"},
