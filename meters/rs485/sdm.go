@@ -33,7 +33,7 @@ func NewSDMProducer() Producer {
 		CurrentL2:     0x0008,
 		CurrentL3:     0x000A,
 		CurrentN:      0x00e0,
-		Current:       0x0012,
+		Current:       0x0030,
 		PowerL1:       0x000C,
 		PowerL2:       0x000E,
 		PowerL3:       0x0010,
@@ -62,7 +62,7 @@ func NewSDMProducer() Producer {
 		CosphiL1:      0x001e, //      230
 		CosphiL2:      0x0020,
 		CosphiL3:      0x0022,
-		Cosphi:        0x003e,  // Total Power Factor (+/-) Positive for capacitive and negative for inductive.
+		Cosphi:        0x003e, // Total Power Factor (+/-) Positive for capacitive and negative for inductive.
 		THDL1:         0x00ea, // voltage
 		THDL2:         0x00ec, // voltage
 		THDL3:         0x00ee, // voltage

@@ -401,13 +401,13 @@
 						<td class="col-2">&mdash;</td>
 						<td class="col-3">${ m.HeatsinkTemp }</td>
 					</tr>
-						<tr class="d-flex" v-if="populated(m.PhaseAngle)">
-							<td class="col-3">Phase Angle</td>
-							<td class="col-2">&mdash;</td>
-							<td class="col-2">&mdash;</td>
-							<td class="col-2">&mdash;</td>
-							<td class="col-3">${ m.PhaseAngle }</td>
-						</tr>
+					<tr class="d-flex" v-if="pop(m.PhaseAngle)">
+						<td class="col-3">Phase Angle (°)</td>
+						<td class="col-2">&mdash;</td>
+						<td class="col-2">&mdash;</td>
+						<td class="col-2">&mdash;</td>
+						<td class="col-3">${ m.PhaseAngle }</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
